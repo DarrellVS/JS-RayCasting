@@ -6,10 +6,8 @@ class Emitter {
         this.rays = []
         this.heading = 0;
 
-        let rotationOffset = -90 - fov / 2
-
         // Create rays
-        for (let i = rotationOffset; i < fov + rotationOffset - resolution; i += resolution) this.rays.push(new Ray(this.pos, radians(i)))
+        this.createRays(resolution)
     }
 
     render() {
@@ -22,11 +20,20 @@ class Emitter {
     }
 
     translate(x, y) {
-        // return if position is invalid
-        if (x < 0 || x > width || y < 0 || y > height) return;
-
         this.pos.set(x, y)
         this.rays.forEach(ray => ray.translate(this.pos))
+    }
+
+    setResolution(resolution) {
+        this.resolution = resolution
+        this.createRays(resolution);
+    }
+
+    createRays(resolution) {
+        resolution = 360 / resolution / 1200
+        this.rays = [];
+        let rotationOffset1 = -90 - this.fov / 2
+        for (let i = rotationOffset1; i < this.fov + rotationOffset1; i += resolution) this.rays.push(new Ray(this.pos, radians(i)))
     }
 
     cast(colliders) {

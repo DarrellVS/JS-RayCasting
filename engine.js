@@ -4,9 +4,14 @@ const colliders = []
 // Holds the emitter
 let emitter
 
+// inputs
+let resolutionSlider;
+
+let lastResolutionVal = -1;
+
 function setup() {
     // Create a canvas
-    createCanvas(1200, 800)
+    createCanvas(1200, 780)
 
     // Draw walls
     colliders.push(new Collider(0, 0, width, 0))
@@ -20,12 +25,28 @@ function setup() {
 
     // Create a new Emitter
     emitter = new Emitter(360, 0.1)
+
+    // Create inputs
+    resolutionSlider = createSlider(0.1, 2, 2, 0.02);
+
+    button = createButton('Ultra Overclock RTX 9000 Mode of Doom');
+    button.mousePressed(() => {
+        emitter.setResolution(10)
+    });
 }
 
 function draw() {
     // Set the background to blackddd
     background(0)
 
+    // Set resolution
+    let sliderVal = resolutionSlider.value()
+    if (lastResolutionVal !== sliderVal) {
+        lastResolutionVal = sliderVal
+        emitter.setResolution(sliderVal)
+    }
+
+    // Translate the emitter to the mous position
     emitter.translate(mouseX, mouseY)
 
     // Cast all rays to all colliders, draw a line if the ray collides

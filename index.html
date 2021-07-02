@@ -9,13 +9,53 @@
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
 
     <style>
-        html, body {
+        body {
             margin: 0;
             padding: 0;
+            display: grid;
+            grid-template:  "h1 h1"
+                            "main main"
+                            "input button";
+            justify-items: center;
+            max-width: 1920px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            grid-area: h1;
+        }
+
+        main {
+            grid-area: main;
+        }
+
+        canvas {
+            margin: auto;
+            display: block;
+        }
+
+        input {
+            grid-area: input;
+            width: 10rem;
+            margin-top: 1.5rem;
+        }
+
+        button {
+            grid-area: button;
+            width: 10rem;
+            margin-top: 1.5rem;
+            background: rgb(224, 66, 66);
+            border: none;
+            padding: .5rem 1.5rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+    <h1>JavaScript Ray Caster</h1>
     <main></main>
     <script src="./ray.js"></script>
     <script src="./collider.js"></script>
