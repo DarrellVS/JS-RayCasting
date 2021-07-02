@@ -11,6 +11,8 @@ let resolutionSlider;
 // Do not re-cast all rays if resolution hasnt changed
 let lastResolutionVal = -1;
 
+let tempColliderPositions = { x: undefined, y: undefined }
+
 function setup() {
     // Create a canvas
     createCanvas(1200, 780)
@@ -60,4 +62,17 @@ function draw() {
     // Draw a circle at the emitter's location
     // Also draw the rays' direction vectors
     emitter.render()
+}
+
+// Add a collider on mouse click
+function mouseClicked() {
+    // If no begin position has been set
+    if (tempColliderPositions.x === undefined) {
+        tempColliderPositions.x = mouseX
+        tempColliderPositions.y = mouseY
+    } else {
+        // complete the collider
+        colliders.push(new Collider(tempColliderPositions.x, tempColliderPositions.y, mouseX, mouseY))
+        tempColliderPositions = {}
+    }
 }
