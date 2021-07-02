@@ -1,7 +1,3 @@
-// Scene dimensions of a single block (half the scene)
-const sceneWidth = 600
-const sceneHeight = 600
-
 // Scene colliders
 const colliders = []
 
@@ -9,21 +5,21 @@ const colliders = []
 let emitter
 
 function setup() {
-    // Create a canvas twice the width, for side by side view (map, first person)
-    createCanvas(sceneWidth * 2, sceneHeight)
+    // Create a canvas
+    createCanvas(1200, 800)
 
     // Draw walls
-    colliders.push(new Collider(0, 0, sceneWidth, 0))
-    colliders.push(new Collider(sceneWidth, 0, sceneWidth, sceneHeight))
-    colliders.push(new Collider(sceneWidth, sceneHeight, 0, sceneHeight))
-    colliders.push(new Collider(0, sceneHeight, 0, 0))
+    colliders.push(new Collider(0, 0, width, 0))
+    colliders.push(new Collider(width, 0, width, height))
+    colliders.push(new Collider(width, height, 0, height))
+    colliders.push(new Collider(0, height, 0, 0))
 
     // Draw objects
-    colliders.push(new Collider(150, 50, sceneWidth - 50, 250))
+    colliders.push(new Collider(150, 50, width - 50, 250))
     colliders.push(new Collider(400, 200, 500, 450))
 
     // Create a new Emitter
-    emitter = new Emitter(359.9, 0.1)
+    emitter = new Emitter(360, 0.1)
 }
 
 function draw() {

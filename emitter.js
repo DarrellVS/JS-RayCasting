@@ -2,14 +2,14 @@ class Emitter {
     constructor(fov, resolution) {
         this.fov = fov
         this.resolution = resolution
-        this.pos = createVector(sceneWidth / 2, sceneHeight / 2)
+        this.pos = createVector(width / 2, height / 2)
         this.rays = []
         this.heading = 0;
 
         let rotationOffset = -90 - fov / 2
 
         // Create rays
-        for (let i = rotationOffset; i < fov + rotationOffset; i += resolution) this.rays.push(new Ray(this.pos, radians(i)))
+        for (let i = rotationOffset; i < fov + rotationOffset - resolution; i += resolution) this.rays.push(new Ray(this.pos, radians(i)))
     }
 
     render() {
@@ -23,7 +23,7 @@ class Emitter {
 
     translate(x, y) {
         // return if position is invalid
-        if (x < 0 || x > sceneWidth || y < 0 || y > sceneHeight) return;
+        if (x < 0 || x > width || y < 0 || y > height) return;
 
         this.pos.set(x, y)
         this.rays.forEach(ray => ray.translate(this.pos))
