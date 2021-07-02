@@ -35,11 +35,13 @@ class Emitter {
             let record = Infinity
             colliders.forEach(collider => {
                 const intersection = ray.cast(collider)
-                if (!intersection) return
-                let distance = min(record, dist(intersection, this.pos))
-                if (distance < record)
-                    record = distance
-                closest = intersection
+                if (intersection) {
+                    let distance = min(record, p5.Vector.dist(intersection, this.pos))
+                    if (distance < record) {
+                        record = distance
+                        closest = intersection
+                    }
+                }
             });
 
             if (!closest) return
