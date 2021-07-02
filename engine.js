@@ -4,9 +4,11 @@ const colliders = []
 // Holds the emitter
 let emitter
 
-// inputs
+// input
 let resolutionSlider;
 
+// Optimisation variables
+// Do not re-cast all rays if resolution hasnt changed
 let lastResolutionVal = -1;
 
 function setup() {
@@ -30,9 +32,7 @@ function setup() {
     resolutionSlider = createSlider(0.1, 2, 2, 0.02);
 
     button = createButton('Ultra Overclock RTX 9000 Mode of Doom');
-    button.mousePressed(() => {
-        emitter.setResolution(10)
-    });
+    button.mousePressed(() => emitter.setResolution(10));
 }
 
 function draw() {
